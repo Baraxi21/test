@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import openai
 from langchain_openai import OpenAI
+# from langchain.llms import AzureOpenAI
 from langchain_experimental.agents import create_csv_agent
 import os
 from dotenv import load_dotenv
@@ -9,6 +10,8 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
+# OPENAI_DEPLOYMENT_NAME = "deployment name"
+# OPENAI_MODEL_NAME = "model_name" 
 
 csv_agent = create_csv_agent(
     OpenAI(temperature=0.5),
@@ -18,6 +21,10 @@ csv_agent = create_csv_agent(
 )
 
 def create_pd_agent(filename: str):
+
+    # llm = AzureOpenAI(openai_api_key=OPENAI_API_KEY, 
+    #                   deployment_name=OPENAI_DEPLOYMENT_NAME, 
+    #                   model_name=OPENAI_MODEL_NAME)
     df = pd.read_csv(filename)
     return create_pandas_dataframe_agent(OpenAI(temperature=0.5), df, verbose=False)
 
