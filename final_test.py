@@ -14,9 +14,9 @@ def save_response_to_file(response_dict):
         print(f"Answer saved at {answer_filename}")
 
     if "chart" in response_dict:
-        chart_filename = f"chart_{timestamp}.png"
-        os.rename("./chart_image/chart.png", f"./chart_image/{chart_filename}")
-        print(f"Chart saved at ./chart_image/{chart_filename}")
+        chart_filename = f"chart_{timestamp}.html"
+        os.rename("./chart_html/chart.html", f"./chart_html/{chart_filename}")
+        print(f"Chart saved at ./chart_html/{chart_filename}")
 
     if "table" in response_dict:
         table_filename = f"table_data_{timestamp}.csv"
