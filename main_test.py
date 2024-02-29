@@ -26,14 +26,14 @@ def create_pd_agent(filename: str):
     #                   deployment_name=OPENAI_DEPLOYMENT_NAME, 
     #                   model_name=OPENAI_MODEL_NAME)
     df = pd.read_csv(filename)
-    return create_pandas_dataframe_agent(OpenAI(temperature=0.5), df, verbose=False)
+    return create_pandas_dataframe_agent(OpenAI(temperature=0.5), df, verbose=False, handle_parsing_errors=True)
 
 def query_pd_agent(agent, query):
     prompt = (
         """
-        You must need to use matplotlib library if required to create a any chart.
+        You must need to use Plotly library if required to create a any interactive chart.
 
-        If the query requires creating a chart, please save the chart as "./chart_image/chart.png" and "Here is the chart:" when reply as follows:
+        If the query requires creating a chart, please save the chart as "./chart_html/chart.html" and "Here is the chart:" when reply as follows:
         {"chart": "Here is the chart:"}
 
         If the query requires creating a table, reply as follows:
